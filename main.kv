@@ -1,0 +1,359 @@
+WindowManager:
+    DepartureWindow:
+    ArrivalWindow:
+    MainFirstWindow:
+    ErrorScreen:
+    HelpScreen:
+
+
+<DepartureWindow>:
+    canvas.before:
+        Color:
+            rgba: 0/255.0, 35/255.0, 94/255.0, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+
+    GridLayout:
+        cols:1
+
+        padding: 10
+        spacing: 10
+
+        GridLayout:
+            cols:2
+
+            TextInput:
+                halign: 'center'
+                height: 30
+                multiline: False
+                id: dpRoomNumberInput
+                multiline: False
+
+            Button:
+                text: "Submit Current \nRoom Number"
+                on_release:
+                    root.dp_roomsubmit()
+                    app.root.current = "arrival"
+                    dpRoomNumberInput.text = ''
+                background_color: (0,0,0,0)
+                background_normal: ''
+                canvas.before:
+                    Color:
+                        rgba: (186/255.0, 34/255.0, 41/255.0, 1)
+                    RoundedRectangle:
+                        size: self.size
+                        pos: self.pos
+                        radius: [80]
+
+        GridLayout:
+            cols:2
+
+            RoundedButton1:
+                text: "Dining Hall"
+                on_release:
+                    root.dp_quickroomsubmit("Dining Hall")
+                    app.root.current = "arrival"
+            
+            RoundedButton1:
+                text: "Sixth Form \nCommon Room"
+                on_release:
+                    root.dp_quickroomsubmit("Sixth Form Common Room")
+                    app.root.current = "arrival"
+
+        GridLayout:
+            cols:2
+
+            RoundedButton1:
+                text: "Staff Room"
+                on_release:
+                    root.dp_quickroomsubmit("Staff Room")
+                    app.root.current = "arrival"
+
+            RoundedButton1:
+                text: "Fred's Office"
+                on_release:
+                    root.dp_quickroomsubmit("Fred's Office")
+                    app.root.current = "arrival"
+
+        GridLayout:
+            cols:2
+
+            RoundedButton1:
+                text: "Picture Gallery"
+                on_release:
+                    root.dp_quickroomsubmit("Picture Gallery")
+                    app.root.current = "arrival"
+
+            RoundedButton1:
+                text: "Reception"
+                on_release:
+                    root.dp_quickroomsubmit("Reception")
+                    app.root.current = "arrival"
+
+        GridLayout:
+            cols:1
+
+            Button:
+                background_color: (0,0,0,0)
+                background_normal: ''
+                canvas.before:
+                    Color:
+                        rgba: (47/255.0, 70/255.0, 145/255.0, 1)
+                    RoundedRectangle:
+                        size: self.size
+                        pos: self.pos
+                        radius: [80]
+
+                text: "Help Page"
+                on_release:
+                    app.root.current = "help"
+
+
+<ArrivalWindow>:
+    canvas.before:
+        Color:
+            rgba: 190/255.0, 159/255.0, 84/255.0, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    GridLayout:
+        cols:1
+        padding: 20
+        spacing: 10
+
+        GridLayout:
+            cols:2
+
+            TextInput:
+                id: arRoomNumberInput
+                multiline: False
+
+            Button:
+                text: "Submit Desired \nRoom Number"
+                on_release:
+                    root.ar_roomsubmit()
+                    app.root.current = "map"
+                    arRoomNumberInput.text = ''
+
+                background_color: (0,0,0,0)
+                background_normal: ''
+                canvas.before:
+                    Color:
+                        rgba: (186/255.0, 34/255.0, 41/255.0, 1)
+                    RoundedRectangle:
+                        size: self.size
+                        pos: self.pos
+                        radius: [80]
+
+        GridLayout:
+            cols:2
+
+            RoundedButton2:
+                text: "Dining Hall"
+                on_release:
+                    root.ar_quickroomsubmit("Dining Hall")
+                    app.root.current = "map"
+            
+            RoundedButton2:
+                text: "Sixth Form \nCommon Room"
+                on_release:
+                    root.ar_quickroomsubmit("Sixth Form Common Room")
+                    app.root.current = "map"
+
+        GridLayout:
+            cols:2
+
+            RoundedButton2:
+                text: "Staff Room"
+                on_release:
+                    root.ar_quickroomsubmit("Staff Room")
+                    app.root.current = "map"
+
+            RoundedButton2:
+                text: "Fred's Office"
+                on_release:
+                    root.ar_quickroomsubmit("Fred's Office")
+                    app.root.current = "map"
+
+        GridLayout:
+            cols:2
+
+            RoundedButton2:
+                text: "Picture Gallery"
+                on_release:
+                    root.ar_quickroomsubmit("Picture Gallery")
+                    app.root.current = "map"
+
+            RoundedButton2:
+                text: "Reception"
+                on_release:
+                    root.ar_quickroomsubmit("Reception")
+                    app.root.current = "map"
+
+        GridLayout:
+            cols:1
+
+            Button:
+                background_color: (0,0,0,0)
+                background_normal: ''
+                canvas.before:
+                    Color:
+                        rgba: (91/255.0, 103/255.0, 109/255.0, 1)
+                    RoundedRectangle:
+                        size: self.size
+                        pos: self.pos
+                        radius: [80]
+                text: "Go Back"
+                on_release:
+                    app.root.current = "departure"
+
+
+
+
+<MainFirstWindow>:
+    canvas.before:
+        Color:
+            rgba: 1, 1, 1, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+
+    Button:
+        id: go_forwards
+        background_color: (190/255.0, 159/255.0, 84/255.0, 1)
+        pos_hint: {'x':0, 'y': 0}
+        size_hint: 0.5,0.1
+        text: "Next"
+        on_release:
+            root.drawLines()
+
+    Button:
+        id: go_backwards
+        background_color: (0/255.0, 35/255.0, 94/255.0, 1)
+        pos_hint: {'x':0.5, 'y': 0}
+        size_hint: 0.5,0.1
+        size_hint: 0.5,0.1
+        text: "Back"
+        on_release:
+            root.backwards()
+
+
+<ErrorScreen>:
+    GridLayout:
+        rows:3
+
+        AnswerLabel:
+            text: "You have entered an invalid classroom number which has caused an error, please try again. If the problem persists please contact leo.liang@reddamhouse.org.uk."
+
+        AnswerLabel:
+            text: "Valid room numbers are as follows. Rooms 9 to 11, 101 to 121, 129 to 131, 201 to 211, THEATRE and MUSIC. Some room numbers within those ranges may still cause an error due to modifications to the building."
+            
+        Button:
+            background_color: (0/255.0, 35/255.0, 94/255.0, 1)
+            text: "Press here to return to the homepage."
+            on_release:
+                app.root.current = "departure"
+    
+
+<HelpScreen>:
+    GridLayout:
+        rows:13
+
+        QuestionLabel:
+            text: "How do I use this app?"
+
+        AnswerLabel:
+            text: "Please input your current location on the first page followed by your required destination on the second page and hit submit. The app will then show you the best route to take for you to get to your destination."
+
+        QuestionLabel:
+            text: "What should I put in the entry box?"    
+
+        AnswerLabel:
+            text: "Classroom numbers such as 121, 211 and A4. Valid entries are 9 to 11, 101 to 121, 129 to 131, 201 to 211, THEATRE and MUSIC. Some room numbers within those ranges may cause an error due to modifications to the building."   
+
+        QuestionLabel:
+            text: "Why are there some buttons with locations on them?"
+     
+        AnswerLabel:
+            text: "They are quick select buttons so you don't have to input your location in the text box."
+
+        QuestionLabel:
+            text: "The app is not working as intended, what should I do?"
+
+        AnswerLabel:
+            text: "Please contact leo.liang@reddamhouse.org.uk with details."
+        
+        QuestionLabel:
+            text: "Why was this app made?"
+
+        AnswerLabel:
+            text: "This was an EPQ project which I had hoped to help new students and staff navigate the school campus better."
+
+        QuestionLabel:
+            text: "Why are the graphics so poor?"
+
+        AnswerLabel:
+            text: "Since it was a personal project, I had limited resources available to me, one of which is my artistic skills, so please excuse the extremely poor graphics within this app."
+
+
+        Button:
+            background_color: (0,0,0,0)
+            background_normal: ''
+            canvas.before:
+                Color:
+                    rgba: (91/255.0, 103/255.0, 109/255.0, 1)
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [80]
+            text: "Go Back"
+            on_release:
+                app.root.current = "departure"
+   
+             
+<RoundedButton1@Button>:
+    background_color: (0,0,0,0)
+    background_normal: ''
+    canvas.before:
+        Color:
+            rgba: (190/255.0, 159/255.0, 84/255.0, 1)
+        RoundedRectangle:
+            size: self.size
+            pos: self.pos
+            radius: [80]
+
+
+<RoundedButton2@Button>:
+    background_color: (0,0,0,0)
+    background_normal: ''
+    canvas.before:
+        Color:
+            rgba: (0/255.0, 35/255.0, 94/255.0, 1)
+        RoundedRectangle:
+            size: self.size
+            pos: self.pos
+            radius: [80]
+
+<QuestionLabel@Label>:
+    size: self.texture_size
+    canvas.before:
+        Color:
+            rgba: (0/255.0, 35/255.0, 94/255.0, 1)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+<AnswerLabel@Label>:
+    text_size: self.size
+    halign: 'left'
+    valign: 'middle'
+    canvas.before:
+        Color:
+            rgba: (190/255.0, 159/255.0, 84/255.0, 1)
+        Rectangle:
+            pos: self.pos
+            size: self.size
