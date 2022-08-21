@@ -246,10 +246,10 @@ WindowManager:
     GridLayout:
         rows:3
 
-        AnswerLabel:
+        ErrorLabel:
             text: "You have entered an invalid classroom number which has caused an error, please try again. If the problem persists please contact leo.liang@reddamhouse.org.uk."
 
-        AnswerLabel:
+        ErrorLabel:
             text: "Valid room numbers are as follows. Rooms 9 to 11, 101 to 121, 129 to 131, 201 to 211, THEATRE and MUSIC. Some room numbers within those ranges may still cause an error due to modifications to the building."
             
         Button:
@@ -340,6 +340,7 @@ WindowManager:
 
 <QuestionLabel@Label>:
     size: self.texture_size
+    font_size: self.height/4
     canvas.before:
         Color:
             rgba: (0/255.0, 35/255.0, 94/255.0, 1)
@@ -349,6 +350,19 @@ WindowManager:
 
 <AnswerLabel@Label>:
     text_size: self.size
+    font_size: self.height/4.5
+    halign: 'left'
+    valign: 'middle'
+    canvas.before:
+        Color:
+            rgba: (190/255.0, 159/255.0, 84/255.0, 1)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+<ErrorLabel@Label>:
+    text_size: self.size
+    font_size: self.height/15
     halign: 'left'
     valign: 'middle'
     canvas.before:
